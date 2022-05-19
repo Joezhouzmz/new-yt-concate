@@ -3,13 +3,14 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-search_word = 'insane'
-video_link_number = 4
+channel_id = 'UCq5ZYJax8VC580PAIU5xuvg'
+search_word = 'papaya'
+video_link_number = 20
 use_existing_video_links_file = True
 
 API_KEY = os.getenv('API_KEY')
-CHANNEL_ID = 'UCq5ZYJax8VC580PAIU5xuvg'
 DOWNLOADS_DIR = 'downloads'
-CAPTIONS_DIR = os.path.join(DOWNLOADS_DIR, 'cations')
+CAPTIONS_DIR = os.path.join(DOWNLOADS_DIR, 'captions')
 VIDEOS_DIR = os.path.join(DOWNLOADS_DIR, 'videos')
-VIDEO_LINK_FILE_DIR = os.path.join(DOWNLOADS_DIR, CHANNEL_ID+'txt')
+VIDEO_LINK_FILE_DIR = os.path.join(DOWNLOADS_DIR, channel_id + 'txt')
+OUTPUT_DIR = 'output'

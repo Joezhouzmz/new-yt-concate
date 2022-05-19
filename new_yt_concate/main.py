@@ -8,6 +8,8 @@ from new_yt_concate.pipeline.steps.initialize_yt import InitializeYT
 from new_yt_concate.pipeline.steps.download_captions import DownloadCaptions
 from new_yt_concate.pipeline.steps.read_captions import ReadCaptions
 from new_yt_concate.pipeline.steps.search import Search
+from new_yt_concate.pipeline.steps.download_videos import DownloadVideos
+from new_yt_concate.pipeline.steps.edit_video import EditVideo
 from new_yt_concate.pipeline.steps.postflight import Postflight
 
 def main():
@@ -18,6 +20,8 @@ def main():
         DownloadCaptions(),
         ReadCaptions(),
         Search(),
+        DownloadVideos(),
+        EditVideo(),
         Postflight(),
     ]
     p = Pipeline(steps)

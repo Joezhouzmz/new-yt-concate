@@ -3,20 +3,29 @@ import urllib.request
 import json
 
 from new_yt_concate.settings import API_KEY, use_existing_video_links_file, VIDEO_LINK_FILE_DIR
-from new_yt_concate.settings import CHANNEL_ID
+from new_yt_concate.settings import channel_id
 from new_yt_concate.settings import video_link_number
 from new_yt_concate.pipeline.steps.step import Step
 
 
 class GetVideoList(Step):
     def process(self, data):
-        if not self.check_if_rewrite_video_links_list():
-            print('Using old video links file')
-            return self.read_video_links_file()
+        # if not self.check_if_rewrite_video_links_list():
+        #     print('Using old video links file')
+        #     return self.read_video_links_file()
+        if use_existing_video_links_file:
+            if os.path.exists(VIDEO_LINK_FILE_DIR):
+                print('Using existing video links file')
+                self.read_video_links_file()
+            else:
+                print('No existing video links file. Creating new video links file')
+        else:
+            if os.path.exists(VIDEO_LINK_FILE_DIR):
+                print('Found existing video links file. Deleting and creating new video links file')
+                os.remove(VIDEO_LINK_FILE_DIR)
+            else:
+                print('Creating new video links file')
 
-        print('Creating new video links file')
-
-        channel_id = CHANNEL_ID
         api_key = API_KEY
 
         base_video_url = 'https://www.youtube.com/watch?v='
@@ -52,12 +61,12 @@ class GetVideoList(Step):
         self.write_video_links_to_file(video_links)
         return video_links
 
-    @staticmethod
-    def check_if_rewrite_video_links_list():
-        if not use_existing_video_links_file:
-            return True
-        else:
-            return not os.path.exists(VIDEO_LINK_FILE_DIR)
+    # @staticmethod
+    # def check_if_rewrite_video_links_list():
+    #     if not use_existing_video_links_file:
+    #         return True
+    #     else:
+    #         return not os.path.exists(VIDEO_LINK_FILE_DIR)
 
     @staticmethod
     def write_video_links_to_file(video_links):
