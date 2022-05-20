@@ -3,14 +3,14 @@ import os
 from pytube import YouTube
 
 from new_yt_concate.pipeline.steps.step import Step
-from new_yt_concate.pipeline.steps.step import StepException
+from new_yt_concate.pipeline.steps.initialize_logging import logging
 
 class DownloadCaptions(Step):
     def process(self, data):
         yt_list = data
         for yt in yt_list:
             if yt.caption_file_exists:
-                print('Found existing caption file', yt.id)
+                logging.info('Found existing caption file'+ yt.id)
                 continue
             source = YouTube(yt.url)
             en_caption = source.captions.get_by_language_code('a.en')

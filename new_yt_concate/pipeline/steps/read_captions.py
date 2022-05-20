@@ -1,10 +1,9 @@
-
-
 from new_yt_concate.pipeline.steps.step import Step
+from new_yt_concate.pipeline.steps.initialize_logging import logging
 
 class ReadCaptions(Step):
     def process(self, data):
-
+        logging.info('reading captions')
         for yt in data:
             if not yt.caption_file_exists:
                 continue

@@ -6,6 +6,7 @@ from new_yt_concate.settings import API_KEY, use_existing_video_links_file, VIDE
 from new_yt_concate.settings import channel_id
 from new_yt_concate.settings import video_link_number
 from new_yt_concate.pipeline.steps.step import Step
+from new_yt_concate.pipeline.steps.initialize_logging import logging
 
 
 class GetVideoList(Step):
@@ -15,16 +16,16 @@ class GetVideoList(Step):
         #     return self.read_video_links_file()
         if use_existing_video_links_file:
             if os.path.exists(VIDEO_LINK_FILE_DIR):
-                print('Using existing video links file')
+                logging.info('Using existing video links file')
                 self.read_video_links_file()
             else:
-                print('No existing video links file. Creating new video links file')
+                logging.info('No existing video links file. Creating new video links file')
         else:
             if os.path.exists(VIDEO_LINK_FILE_DIR):
-                print('Found existing video links file. Deleting and creating new video links file')
+                logging.info('Found existing video links file. Deleting and creating new video links file')
                 os.remove(VIDEO_LINK_FILE_DIR)
             else:
-                print('Creating new video links file')
+                logging.info('Creating new video links file')
 
         api_key = API_KEY
 
@@ -56,8 +57,8 @@ class GetVideoList(Step):
                     reach_video_links_number_limit = True
                     break
 
-        print(video_links)
-        print(len(video_links))
+        logging.info('video links: '+ str(video_links))
+        logging.info('the len of video_links'+ str(len(video_links)))
         self.write_video_links_to_file(video_links)
         return video_links
 
