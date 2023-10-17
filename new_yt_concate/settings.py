@@ -12,5 +12,5 @@ API_KEY = os.getenv('API_KEY')
 DOWNLOADS_DIR = 'downloads'
 CAPTIONS_DIR = os.path.join(DOWNLOADS_DIR, 'captions')
 VIDEOS_DIR = os.path.join(DOWNLOADS_DIR, 'videos')
-VIDEO_LINK_FILE_DIR = os.path.join(DOWNLOADS_DIR, channel_id + 'txt')
+VIDEO_LINK_FILE_DIR = os.path.join(DOWNLOADS_DIR, channel_id + '.txt')
 OUTPUT_DIR = 'output'
