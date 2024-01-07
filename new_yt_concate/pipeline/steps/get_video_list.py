@@ -11,9 +11,6 @@ from new_yt_concate.pipeline.steps.initialize_logging import logging
 
 class GetVideoList(Step):
     def process(self, data):
-        # if not self.check_if_rewrite_video_links_list():
-        #     print('Using old video links file')
-        #     return self.read_video_links_file()
         if use_existing_video_links_file:
             if os.path.exists(VIDEO_LINK_FILE_DIR):
                 logging.info('Using existing video links file')
