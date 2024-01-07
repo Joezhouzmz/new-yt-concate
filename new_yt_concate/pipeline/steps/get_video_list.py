@@ -62,13 +62,6 @@ class GetVideoList(Step):
         self.write_video_links_to_file(video_links)
         return video_links
 
-    # @staticmethod
-    # def check_if_rewrite_video_links_list():
-    #     if not use_existing_video_links_file:
-    #         return True
-    #     else:
-    #         return not os.path.exists(VIDEO_LINK_FILE_DIR)
-
     @staticmethod
     def write_video_links_to_file(video_links):
         with open(VIDEO_LINK_FILE_DIR, 'w') as f:
